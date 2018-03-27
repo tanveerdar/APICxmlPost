@@ -1,0 +1,24 @@
+<polUni>
+ <fvTenant dn="uni/tn-tadar_TN3" name="tadar_TN3">
+       <vnsLDevVip contextAware="single-Context" devtype="VIRTUAL" dn="uni/tn-tadar_TN3/lDevVip-L47-ASAv-Routed" funcType="GoTo" isCopy="no" managed="no" mode="legacy-Mode" name="L47-ASAv-Routed" nameAlias="" packageModel="" promMode="no" svcType="FW" trunking="no">
+       <vnsCDev devCtxLbl="" name="Device1" nameAlias="" vcenterName="fab1-vc-controller" vmName="ABC-ASAv-00">
+        <vnsCCred name="username" nameAlias="" value="a"/>
+        <vnsCCredSecret name="password" nameAlias=""/>
+        <vnsCIf name="outside" nameAlias="" vnicName="Network adapter 2">
+            <vnsRsCIfPathAtt tDn="topology/pod-1/paths-101/pathep-[eth1/5]"/>
+        </vnsCIf>
+        <vnsCIf name="inside" nameAlias="" vnicName="Network adapter 3">
+            <vnsRsCIfPathAtt tDn="topology/pod-1/paths-101/pathep-[eth1/5]"/>
+        </vnsCIf>
+       </vnsCDev>
+
+       <vnsLIf encap="unknown" name="in" nameAlias="">
+        <vnsRsCIfAttN tDn="uni/tn-tadar_TN3/lDevVip-L47-ASAv-Routed/cDev-Device1/cIf-[inside]"/>
+       </vnsLIf>
+       <vnsLIf encap="unknown" name="out" nameAlias="">
+        <vnsRsCIfAttN tDn="uni/tn-tadar_TN3/lDevVip-L47-ASAv-Routed/cDev-Device1/cIf-[outside]"/>
+       </vnsLIf>
+      <vnsRsALDevToDomP tDn="uni/vmmp-VMware/dom-FAB1-DVS-CL02"/>
+     </vnsLDevVip>
+	</fvTenant>
+</polUni>

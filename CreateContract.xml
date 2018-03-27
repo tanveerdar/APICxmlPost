@@ -1,0 +1,18 @@
+<polUni>
+ <fvTenant dn="uni/tn-tadar_TN3" name="tadar_TN3">
+        <vzBrCP  name="webtoapp" scope="context">
+			<vzSubj name="alltraffic" provMatchT="AtleastOne" revFltPorts="yes">
+				<vzRsSubjFiltAtt tnVzFilterName="default"/>
+			</vzSubj>
+		</vzBrCP>
+
+		<fvAp name="SG_APP2">
+			<fvAEPg matchT="AtleastOne" name="web-BE">
+				<fvRsCons tnVzBrCPName="webtoapp"/>
+			</fvAEPg>
+			<fvAEPg matchT="AtleastOne" name="app-FE">
+				<fvRsProv tnVzBrCPName="webtoapp"/>
+			</fvAEPg>
+		</fvAp>
+	</fvTenant>
+</polUni>

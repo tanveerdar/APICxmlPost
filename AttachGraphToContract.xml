@@ -1,0 +1,10 @@
+<polUni>
+    <fvTenant name="tadar_TN3">
+        <vzBrCP name="webtoapp">
+			<vzSubj name="alltraffic" provMatchT="AtleastOne" revFltPorts="yes">
+				<vzRsSubjFiltAtt tnVzFilterName="default"/>
+				 <vzRsSubjGraphAtt tnVnsAbsGraphName="SG-ASAv-Routed"/>
+			</vzSubj>
+        </vzBrCP>
+    </fvTenant>
+</polUni>

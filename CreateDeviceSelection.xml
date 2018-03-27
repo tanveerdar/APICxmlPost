@@ -1,0 +1,32 @@
+<polUni>
+    <fvTenant name="tadar_TN3">
+
+     <!-- here we need to match the contract name -->
+     <!-- the graph name -->
+     <!-- the node name in the graph -->
+     <!-- and indicate which interface maps to which BD -->
+
+ 	<!-- nodeNameOrLbl refers to the name of the node as defined the Abstract Graph -->
+	<vnsLDevCtx ctrctNameOrLbl="webtoapp" graphNameOrLbl="FW-bridged" nodeNameOrLbl="SG-ASAv-Routed">
+
+	  <!-- ASAv01-cluster is the name of the Logical Device i.e. of the Cluster of ASAv -->
+      <vnsRsLDevCtxToLDev tDn="uni/tn-tadar_TN3/lDevVip-L47-ASAv-Routed"/>
+
+      <!-- Connector name is defined in the Abstract Graph -->
+      <!-- It is the function connector -->
+            <!-- ASAv01-cluster is the name of the Logical Device -->
+            <!-- The Lif is the "cluster" interface name, i.e. the abstract interface -->
+            <!-- that can map to either ASAv in the cluster -->
+    <vnsLIfCtx connNameOrLbl="provider" name="">
+      <vnsRsLIfCtxToLIf tDn="uni/tn-tadar_TN3/lDevVip-L47-ASAv-Routed/lIf-in"/>
+      <vnsRsLIfCtxToBD tDn="uni/tn-tadar_TN3/BD-Servers-BE-BD"/>
+    </vnsLIfCtx>
+
+    <vnsLIfCtx connNameOrLbl="consumer" name="">
+			<vnsRsLIfCtxToLIf tDn="uni/tn-tadar_TN3/lDevVip-L47-ASAv-Routed/lIf-out"/>
+			 <!-- This is the outside BD-->
+			<vnsRsLIfCtxToBD tDn="uni/tn-tadar_TN3/BD-Clients-FE-BD"/>
+		</vnsLIfCtx>
+  </vnsLDevCtx>
+</fvTenant>
+</polUni>

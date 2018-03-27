@@ -1,0 +1,48 @@
+<polUni>
+ <fvTenant name="tadar_TN3">
+
+    <!-- This is the name of the graph -->
+    <!-- it is referenced when you associate with the contract -->
+
+	<vnsAbsGraph name="SG-ASAv-Routed">
+        <!-- This is the Outside "connector" of the graph -->
+	    <!-- The name is referenced by AbsTermNodeProv-ServerSide/AbsTConn -->
+		<vnsAbsTermNodeCon name="T1">
+			<vnsAbsTermConn attNotify="no" name="1"/>
+			<vnsInTerm name=""/>
+			<vnsOutTerm name=""/>
+		</vnsAbsTermNodeCon>
+
+		<!-- This is the Inside "connector" of the graph -->
+		<!-- The name is referenced by AbsTermNodeCon-ClientSide/AbsTConn -->
+		<vnsAbsTermNodeProv name="T2">
+			<vnsAbsTermConn attNotify="no" name="1" />
+			<vnsInTerm name=""/>
+			<vnsOutTerm name=""/>
+		</vnsAbsTermNodeProv>
+
+		<!-- This defines the name of the node in the graph -->
+		<!-- The name is referenced by "AbsNode-ASA-1-node/AbsFConn-****" -->
+		<vnsAbsNode funcTemplateType="FW_ROUTED" funcType="GoTo" name="N1">
+
+		    <!-- This is the name of the connectivity point of the node -->
+		    <!-- the name is referenced by AbsNode-ASA-1-node/AbsFConn-ASAnodeoutside -->
+			<vnsAbsFuncConn attNotify="no" name="provider"/>
+			<vnsAbsFuncConn attNotify="no" name="consumer"/>
+			<vnsRsNodeToLDev tDn="uni/tn-tadar_TN3/lDevVip-L47-ASAv-Routed"/>
+		</vnsAbsNode>
+
+		<!-- Makes it possible to enable routing on the BD that it connects to -->
+		<vnsAbsConnection adjType="L2" connType="external" name="C1" unicastRoute="yes">
+			<vnsRsAbsConnectionConns tDn="uni/tn-tadar_TN3/AbsGraph-SG-ASAv-Routed/AbsTermNodeCon-T1/AbsTConn"/>
+			<vnsRsAbsConnectionConns tDn="uni/tn-tadar_TN3/AbsGraph-SG-ASAv-Routed/AbsNode-N1/AbsFConn-consumer"/>
+		</vnsAbsConnection>
+
+
+		<vnsAbsConnection adjType="L2" connType="external" name="C2" unicastRoute="yes">
+			<vnsRsAbsConnectionConns tDn="uni/tn-tadar_TN3/AbsGraph-SG-ASAv-Routed/AbsNode-N1/AbsFConn-provider"/>
+			<vnsRsAbsConnectionConns tDn="uni/tn-tadar_TN3/AbsGraph-SG-ASAv-Routed/AbsTermNodeProv-T2/AbsTConn"/>
+		</vnsAbsConnection>
+	</vnsAbsGraph>
+  </fvTenant>
+</polUni>

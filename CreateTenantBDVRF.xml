@@ -1,0 +1,35 @@
+<polUni>
+    <fvTenant name="tadar_TN3">
+
+        <fvCtx name="VRF1-Client"/>
+
+        <!-- bridge domain -->
+        <!-- set the BD to operate in L2 mode -->
+        <!-- an outside router does the routing -->
+
+        <fvBD name="Clients-FE-BD" arpFlood="yes" unicastRoute="no" unkMacUcastAct="flood" unkMcastAct="flood">
+          <fvRsCtx tnFvCtxName="VRF1-Client" />
+        </fvBD>
+
+        <fvCtx name="VRF2-Servers"/>
+        <!-- bridge domain -->
+        <!-- set the BD to operate in L2 mode -->
+        <!-- enable unicastRoute in case you need endpoint attach -->
+        <fvBD name="Servers-BE-BD" arpFlood="yes" unicastRoute="yes" unkMacUcastAct="flood" unkMcastAct="flood">
+          <fvRsCtx tnFvCtxName="VRF2-Servers" />
+        </fvBD>
+
+         <fvAp  name="SG_APP2">
+			<fvAEPg  matchT="AtleastOne" name="web-BE" >
+				<fvRsDomAtt instrImedcy="lazy" resImedcy="immediate" tDn="uni/vmmp-VMware/dom-FAB1-DVS-CL02">
+				</fvRsDomAtt>
+				<fvRsBd tnFvBDName="Servers-BE-BD"/>
+			</fvAEPg>
+			<fvAEPg  matchT="AtleastOne" name="app-FE" >
+				<fvRsDomAtt instrImedcy="lazy" resImedcy="immediate" tDn="uni/vmmp-VMware/dom-FAB1-DVS-CL02">
+				</fvRsDomAtt>
+				<fvRsBd tnFvBDName="Clients-FE-BD"/>
+			</fvAEPg>
+		</fvAp>
+    </fvTenant>
+</polUni>
